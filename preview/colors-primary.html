@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acid — Color Tokens</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+<style>
+  body { padding: calc(var(--acid-grid) * 12) var(--acid-margin); background-color: var(--acid-bg); color: var(--acid-text); font-family: var(--acid-f-body); }
+  .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+  .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); margin-bottom: calc(var(--acid-grid) * 2); text-transform: uppercase; letter-spacing: 0.1em; }
+  .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .group-label { font-family: var(--acid-f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--acid-border); margin: calc(var(--acid-grid) * 6) 0 calc(var(--acid-grid) * 3); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: calc(var(--acid-grid) * 4); }
+  .swatch { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); overflow: hidden; transition: transform 150ms ease; }
+  .swatch:hover { transform: translateY(-2px); }
+  .swatch-color { height: 120px; border-bottom: 1px solid var(--acid-border); }
+  .swatch-info { padding: calc(var(--acid-grid) * 4); }
+  .swatch-name { font-family: var(--acid-f-body); font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+  .swatch-token { font-family: var(--acid-f-mono); font-size: 10px; color: #888; margin-bottom: 8px; }
+  .swatch-hex { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); padding: 4px 8px; background: var(--acid-bg); border-radius: var(--acid-radius); display: inline-block; font-weight: 500; }
+</style>
+</head>
+<body>
+  <header class="page-head">
+    <div class="eyebrow">PREVIEW · COLORS</div>
+    <h1>Color Tokens</h1>
+  </header>
+
+  <div class="group-label">Brand</div>
+  <section class="grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-brand-primary);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Primary Highlights</div>
+        <div class="swatch-token">--acid-brand-primary</div>
+        <div class="swatch-hex">#D2E823</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-brand-secondary);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Secondary Highlights</div>
+        <div class="swatch-token">--acid-brand-secondary</div>
+        <div class="swatch-hex">#E76F51</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="group-label">Semantic</div>
+  <section class="grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-bg);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Cream Background</div>
+        <div class="swatch-token">--acid-bg</div>
+        <div class="swatch-hex">#F8F4E8</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-surface); border-bottom: 1px dashed #ccc;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Pure Surface</div>
+        <div class="swatch-token">--acid-surface</div>
+        <div class="swatch-hex">#FFFFFF</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-text);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Slate Text</div>
+        <div class="swatch-token">--acid-text</div>
+        <div class="swatch-hex">#09090B</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-error);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Crimson Error</div>
+        <div class="swatch-token">--acid-error</div>
+        <div class="swatch-hex">#D9383A</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--acid-border);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Deep Purple Border</div>
+        <div class="swatch-token">--acid-border</div>
+        <div class="swatch-hex">#691073</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

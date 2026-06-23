@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acid — Typography Specimens</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+<style>
+  body { padding: calc(var(--acid-grid) * 12) var(--acid-margin); background-color: var(--acid-bg); color: var(--acid-text); font-family: var(--acid-f-body); }
+  .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+  .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); margin-bottom: calc(var(--acid-grid) * 2); text-transform: uppercase; letter-spacing: 0.1em; }
+  .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .specimen { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); padding: calc(var(--acid-grid) * 6); margin-bottom: calc(var(--acid-grid) * 4); display: grid; grid-template-columns: 1fr 200px; gap: calc(var(--acid-grid) * 6); align-items: center; }
+  .specimen-sample { line-height: 1.2; }
+  .specimen-meta { font-family: var(--acid-f-mono); font-size: 11px; color: #888; text-align: right; }
+  .specimen-meta strong { display: block; color: var(--acid-text); font-size: 12px; margin-bottom: 4px; }
+  .scale { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: calc(var(--acid-grid) * 4); margin-top: calc(var(--acid-grid) * 8); }
+  .scale-card { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); padding: calc(var(--acid-grid) * 6); }
+  .scale-label { font-family: var(--acid-f-mono); font-size: 11px; color: #888; margin-bottom: 8px; }
+  @media (max-width: 768px) {
+    .specimen { grid-template-columns: 1fr; }
+    .specimen-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <header class="page-head">
+    <div class="eyebrow">PREVIEW · TYPOGRAPHY</div>
+    <h1>Typography Specimens</h1>
+  </header>
+
+  <div class="specimen">
+    <div class="specimen-sample" style="font-family:var(--acid-f-heading); font-size:var(--acid-s-lg); font-weight:600; letter-spacing:-0.02em;">
+      Dela Gothic One — Heading
+    </div>
+    <div class="specimen-meta">
+      <strong>--acid-f-heading</strong>
+      sizes.lg · 600<br>
+      Display &amp; page titles
+    </div>
+  </div>
+
+  <div class="specimen">
+    <div class="specimen-sample" style="font-family:var(--acid-f-body); font-size:var(--acid-s-base);">
+      Space Grotesk — Body text for reading and UI labels. Clean, modern, highly legible at every size.
+    </div>
+    <div class="specimen-meta">
+      <strong>--acid-f-body</strong>
+      sizes.base · 400/500<br>
+      UI &amp; paragraphs
+    </div>
+  </div>
+
+  <div class="specimen">
+    <div class="specimen-sample" style="font-family:var(--acid-f-mono); font-size:var(--acid-s-base); font-variant-numeric:tabular-nums;">
+      Fira Code — 0123456789.00 mg/dL
+    </div>
+    <div class="specimen-meta">
+      <strong>--acid-f-mono</strong>
+      sizes.sm · 400<br>
+      Numeric clinical data
+    </div>
+  </div>
+
+  <div class="scale">
+    <div class="scale-card">
+      <div class="scale-label">--acid-s-sm</div>
+      <div style="font-size:var(--acid-s-sm); font-family: var(--acid-f-body);">0.875rem (14px)</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-label">--acid-s-base</div>
+      <div style="font-size:var(--acid-s-base); font-family: var(--acid-f-body);">1rem (16px)</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-label">--acid-s-md</div>
+      <div style="font-size:var(--acid-s-md); font-family: var(--acid-f-body);">1.25rem (20px)</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-label">--acid-s-lg</div>
+      <div style="font-size:var(--acid-s-lg); font-family: var(--acid-f-body);">1.75rem (28px)</div>
+    </div>
+  </div>
+</body>
+</html>

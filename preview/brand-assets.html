@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acid — Brand Assets</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+<style>
+  body { padding: calc(var(--acid-grid) * 12) var(--acid-margin); background-color: var(--acid-bg); color: var(--acid-text); font-family: var(--acid-f-body); }
+  .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+  .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); margin-bottom: calc(var(--acid-grid) * 2); text-transform: uppercase; letter-spacing: 0.1em; }
+  .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .assets { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: calc(var(--acid-grid) * 6); }
+  .asset { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); padding: calc(var(--acid-grid) * 6); }
+  .asset-preview { height: 160px; display: flex; align-items: center; justify-content: center; background: var(--acid-bg); border-radius: var(--acid-radius); margin-bottom: calc(var(--acid-grid) * 4); border: 1px dashed var(--acid-border-subtle); }
+  
+  /* Drawn symbol */
+  .drawn-logo-mark {
+    width: 48px;
+    height: 48px;
+    background: var(--acid-brand-primary);
+    border: 3px solid var(--acid-text);
+    border-radius: var(--acid-radius);
+    position: relative;
+  }
+  .drawn-logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    background: var(--acid-brand-secondary);
+    border-radius: 2px;
+  }
+  
+  .drawn-full-logo {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--acid-grid) * 3);
+  }
+  .drawn-full-logo .text {
+    font-family: var(--acid-f-heading);
+    font-size: var(--acid-s-md);
+    letter-spacing: -0.02em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .asset-name { font-family: var(--acid-f-heading); font-size: var(--acid-s-md); margin-bottom: 4px; font-weight: bold; }
+  .asset-path { font-family: var(--acid-f-mono); font-size: 11px; color: #888; }
+  .asset-meta { font-family: var(--acid-f-mono); font-size: 11px; color: var(--acid-border); margin-top: 8px; }
+</style>
+</head>
+<body>
+  <header class="page-head">
+    <div class="eyebrow">PREVIEW · BRAND ASSETS</div>
+    <h1>Brand Assets</h1>
+  </header>
+
+  <p class="acid-body acid-s-base" style="max-width:640px; margin-bottom:calc(var(--acid-grid) * 8); color:#555;">
+    Original visual branding assets for the <code class="acid-mono">Acid Design System</code>. These follow a strict structured format suitable for high-contrast presentation.
+  </p>
+
+  <section class="assets">
+    <article class="asset">
+      <div class="asset-preview">
+        <div class="drawn-full-logo">
+          <div class="drawn-logo-mark"></div>
+          <div class="text">Acid</div>
+        </div>
+      </div>
+      <div class="asset-name">Full Wordmark</div>
+      <div class="asset-path">--acid-f-heading + mark</div>
+      <div class="asset-meta">Primary lockup · Display and headers</div>
+    </article>
+
+    <article class="asset">
+      <div class="asset-preview">
+        <div class="drawn-logo-mark"></div>
+      </div>
+      <div class="asset-name">Isolated Icon</div>
+      <div class="asset-path">--acid-brand-* symbols</div>
+      <div class="asset-meta">Standalone logo symbol · App launcher avatars</div>
+    </article>
+
+    <article class="asset">
+      <div class="asset-preview" style="background:#09090B;">
+        <div class="drawn-full-logo" style="color: white;">
+          <div class="drawn-logo-mark"></div>
+          <div class="text">Acid</div>
+        </div>
+      </div>
+      <div class="asset-name">Logo — Reversed</div>
+      <div class="asset-path">Inverted slate theme</div>
+      <div class="asset-meta">To be applied on dark backgrounds only</div>
+    </article>
+  </section>
+</body>
+</html>

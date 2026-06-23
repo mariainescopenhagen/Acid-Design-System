@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acid — Applied UI Kit Playpen</title>
+  
+  <!-- Core Token Stylesheets -->
+  <link rel="stylesheet" href="../../colors_and_type.css" />
+  
+  <!-- External Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+
+  <!-- React 18 & Babel standalone -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js" crossorigin></script>
+  
+  <style>
+    /* Framework layout */
+    .shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .sidebar {
+      position: sticky; top: 0; height: 100vh;
+      padding: calc(var(--acid-grid) * 8) calc(var(--acid-grid) * 6);
+      border-right: 2px solid var(--acid-border);
+      background: var(--acid-surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: calc(var(--acid-grid) * 3); }
+    .logo-mark { width: 32px; height: 32px; background: var(--acid-brand-primary); border: 2px solid var(--acid-text); border-radius: var(--acid-radius); position: relative; }
+    .logo-mark::after { content: ''; position: absolute; inset: 5px; background: var(--acid-brand-secondary); border-radius: 2px; }
+    .logo-text { font-family: var(--acid-f-heading); font-size: var(--acid-s-md); letter-spacing: -0.02em; font-weight: bold; }
+    
+    .nav-label { font-family: var(--acid-f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--acid-border); margin: calc(var(--acid-grid) * 5) 0 calc(var(--acid-grid) * 2); font-weight: bold; }
+    .nav-link { display: block; padding: calc(var(--acid-grid) * 2) calc(var(--acid-grid) * 3); color: var(--acid-text); text-decoration: none; font-size: var(--acid-s-sm); border-radius: var(--acid-radius); border-left: 2px solid transparent; margin-bottom: 2px; font-family: var(--acid-f-body); cursor: pointer; transition: all 150ms ease; }
+    .nav-link:hover { background: var(--acid-bg); border-left-color: var(--acid-brand-primary); }
+    .nav-link.active { background: var(--acid-brand-primary); border-left-color: var(--acid-text); font-weight: bold; }
+
+    main { padding: calc(var(--acid-grid) * 10) var(--acid-margin); background-color: var(--acid-bg); min-height: 100vh; }
+    .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); display: flex; align-items: baseline; gap: calc(var(--acid-grid) * 4); justify-content: space-between; }
+    .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); font-weight: bold; }
+    .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+    .stat-value { font-family: var(--acid-f-mono); font-size: 2rem; font-variant-numeric: tabular-nums; font-weight: 600; line-height: 1; margin-bottom: calc(var(--acid-grid) * 2); }
+    .stat-label { font-family: var(--acid-f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--acid-border); font-weight: bold; }
+    .stat-delta { font-family: var(--acid-f-mono); font-size: 11px; margin-top: calc(var(--acid-grid) * 2); }
+    .stat-delta.up { color: var(--acid-brand-secondary); font-weight: bold; }
+    .stat-delta.down { color: var(--acid-error); font-weight: bold; }
+
+    .section-title { font-family: var(--acid-f-heading); font-size: var(--acid-s-md); font-weight: 600; margin: calc(var(--acid-grid) * 8) 0 calc(var(--acid-grid) * 4); }
+    
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; }
+      .sidebar { height: auto; border-right: none; border-bottom: 2px solid var(--acid-border); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Run React Component Explorer through Babel -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    function AppliedUIApp() {
+      const [view, setView] = useState('overview');
+      const [records, setRecords] = useState([
+        { id: 'PT-00482', marker: 'Glucose', value: 98.4, unit: 'mg/dL', status: 'normal' },
+        { id: 'PT-00483', marker: 'HbA1c', value: 6.2, unit: '%', status: 'prediabetic' },
+        { id: 'PT-00484', marker: 'Creatinine', value: 1.84, unit: 'mg/dL', status: 'high' },
+        { id: 'PT-00485', marker: 'Potassium', value: 4.2, unit: 'mEq/L', status: 'normal' }
+      ]);
+
+      const [newId, setNewId] = useState('PT-00486');
+      const [newMarker, setNewMarker] = useState('Glucose');
+      const [newValue, setNewValue] = useState('');
+      const [feedback, setFeedback] = useState(null);
+
+      const handleAddRecord = (e) => {
+        e.preventDefault();
+        if (!newValue) return;
+
+        const val = parseFloat(newValue);
+        if (isNaN(val)) return;
+
+        let status = 'normal';
+        if (newMarker === 'Glucose' && val > 140) status = 'high';
+        if (newMarker === 'HbA1c' && val >= 5.7) status = 'prediabetic';
+        if (newMarker === 'Creatinine' && val > 1.2) status = 'high';
+        if (newMarker === 'Potassium' && val > 5.0) status = 'high';
+
+        const newRec = {
+          id: newId,
+          marker: newMarker,
+          value: val,
+          unit: newMarker === 'Glucose' || newMarker === 'Creatinine' ? 'mg/dL' : newMarker === 'HbA1c' ? '%' : 'mEq/L',
+          status: status
+        };
+
+        setRecords([newRec, ...records]);
+        setFeedback({ type: 'success', text: `Successfully registered ${newId} with ${newMarker} value.` });
+        
+        // Auto increments
+        const num = parseInt(newId.split('-')[1]) + 1;
+        setNewId(`PT-${String(num).padStart(5, '0')}`);
+        setNewValue('');
+        setTimeout(() => setFeedback(null), 3000);
+      };
+
+      return (
+        <div className="shell">
+          {/* SIDEBAR NAVIGATION */}
+          <aside className="sidebar">
+            <div>
+              <div className="logo">
+                <div className="logo-mark"></div>
+                <div className="logo-text">Acid</div>
+              </div>
+              <div className="nav-label">Dashboard</div>
+              <span className={`nav-link ${view === 'overview' ? 'active' : ''}`} onClick={() => setView('overview')}>Overview</span>
+              <span className={`nav-link ${view === 'registration' ? 'active' : ''}`} onClick={() => setView('registration')}>Registration</span>
+              <div className="nav-label">Settings</div>
+              <span className="nav-link">System Terminal</span>
+            </div>
+            <div style={{ fontFamily: 'var(--acid-f-mono)', fontSize: '10px', color: '#888' }}>
+              v1.0.0 · Active
+            </div>
+          </aside>
+
+          {/* MAIN WORKING CONTEXT */}
+          <main>
+            <header className="page-head">
+              <div>
+                <span className="eyebrow">CLINICAL · INTERFACE</span>
+                <h1>{view === 'overview' ? 'Patient Overview' : 'Biomarker Registration'}</h1>
+              </div>
+              <div style={{ fontFamily: 'var(--acid-f-mono)', fontSize: '11px', color: '#888' }}>
+                UTC: 2026-06-23
+              </div>
+            </header>
+
+            {feedback && (
+              <div className={`acid-alert ${feedback.type === 'success' ? 'acid-alert-success' : 'acid-alert-error'}`} style={{ marginBottom: '24px' }}>
+                <span className="acid-alert-icon">{feedback.type === 'success' ? '✓' : '!'}</span>
+                <div><strong>System Log:</strong> {feedback.text}</div>
+              </div>
+            )}
+
+            {view === 'overview' && (
+              <div>
+                {/* METRICS ROW */}
+                <section className="grid-3">
+                  <div className="acid-card">
+                    <div className="stat-label">Active Diagnostics</div>
+                    <div className="stat-value">{records.length}</div>
+                    <div className="stat-delta up">▲ Live Clinical Files</div>
+                  </div>
+                  <div className="acid-card">
+                    <div className="stat-label">Anomalies Detected</div>
+                    <div className="stat-value">{records.filter(r => r.status === 'high').length}</div>
+                    <div className="stat-delta down">▲ High threshold violations</div>
+                  </div>
+                  <div className="acid-card">
+                    <div className="stat-label">Response Time</div>
+                    <div className="stat-value">00:14:32</div>
+                    <div className="stat-delta up">▼ 18s improvement</div>
+                  </div>
+                </section>
+
+                {/* LAB TABLE */}
+                <h2 className="section-title">Recent Lab Results</h2>
+                <table className="acid-table">
+                  <thead>
+                    <tr>
+                      <th>Patient ID</th>
+                      <th>Marker</th>
+                      <th>Measured Value</th>
+                      <th>Unit</th>
+                      <th>Evaluation Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {records.map(r => (
+                      <tr key={r.id}>
+                        <td className="acid-num" style={{ fontWeight: 'bold' }}>{r.id}</td>
+                        <td>{r.marker}</td>
+                        <td className="acid-num" style={{ fontWeight: 'bold' }}>{r.value}</td>
+                        <td className="acid-num">{r.unit}</td>
+                        <td>
+                          <span className={`acid-badge ${
+                            r.status === 'high' 
+                              ? 'acid-badge-error' 
+                              : r.status === 'prediabetic' 
+                              ? 'acid-badge-secondary' 
+                              : 'acid-badge-primary'
+                          }`}>
+                            {r.status === 'normal' ? '● Healthy' : r.status === 'high' ? '● High' : 'Pre-diabetic'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                {/* Actions */}
+                <h2 className="section-title">Quick Actions</h2>
+                <div style={{ display: 'flex', gap: 'calc(var(--acid-grid)*4)', flexWrap: 'wrap' }}>
+                  <button className="acid-btn acid-btn-primary" onClick={() => setView('registration')}>+ Register Patient</button>
+                  <button className="acid-btn" onClick={() => alert('Exporting records...')}>Export Registry</button>
+                </div>
+              </div>
+            )}
+
+            {view === 'registration' && (
+              <div className="acid-card" style={{ maxWidth: '600px' }}>
+                <h2 className="section-title" style={{ marginTop: '0', marginBottom: '16px' }}>Log New Outcome</h2>
+                <form onSubmit={handleAddRecord} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <span className="acid-mono" style={{ fontSize: '12px', color: 'var(--acid-border)' }}>Patient ID</span>
+                    <input className="acid-input" type="text" value={newId} onChange={e => setNewId(e.target.value)} required />
+                  </label>
+
+                  <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <span className="acid-mono" style={{ fontSize: '12px', color: 'var(--acid-border)' }}>Biomarker Parameter</span>
+                    <select className="acid-input" value={newMarker} onChange={e => setNewMarker(e.target.value)} style={{ background: 'white', height: '44px' }}>
+                      <option value="Glucose">Glucose</option>
+                      <option value="HbA1c">HbA1c</option>
+                      <option value="Creatinine">Creatinine</option>
+                      <option value="Potassium">Potassium</option>
+                    </select>
+                  </label>
+
+                  <label style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <span className="acid-mono" style={{ fontSize: '12px', color: 'var(--acid-border)' }}>Measured Level</span>
+                    <input className="acid-input" type="text" placeholder="0.0" value={newValue} onChange={e => setNewValue(e.target.value)} required />
+                  </label>
+
+                  <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                    <button type="submit" className="acid-btn acid-btn-primary">Register Entry</button>
+                    <button type="button" className="acid-btn acid-btn-ghost" onClick={() => setView('overview')}>Back</button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </main>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<AppliedUIApp />);
+  </script>
+</body>
+</html>

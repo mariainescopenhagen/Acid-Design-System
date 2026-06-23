@@ -1,0 +1,6 @@
+{
+  "name": "Acid Design System",
+  "description": "An interactive design system explorer, token showcase, and live clinical dashboard playground for the Acid Design System.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

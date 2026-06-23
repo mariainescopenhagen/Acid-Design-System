@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acid — Alert Components</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+<style>
+  body { padding: calc(var(--acid-grid) * 12) var(--acid-margin); background-color: var(--acid-bg); color: var(--acid-text); font-family: var(--acid-f-body); }
+  .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+  .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); margin-bottom: calc(var(--acid-grid) * 2); text-transform: uppercase; letter-spacing: 0.1em; }
+  .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .showcase { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); padding: calc(var(--acid-grid) * 8); margin-bottom: calc(var(--acid-grid) * 4); }
+  .showcase-label { font-family: var(--acid-f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--acid-border); margin-bottom: calc(var(--acid-grid) * 4); font-weight: bold; }
+</style>
+</head>
+<body>
+  <header class="page-head">
+    <div class="eyebrow">PREVIEW · COMPONENTS</div>
+    <h1>Alert Notification Elements</h1>
+  </header>
+
+  <div class="showcase">
+    <div class="showcase-label">Clinical Error Alert</div>
+    <div class="acid-alert acid-alert-error">
+      <span class="acid-alert-icon">!</span>
+      <div><strong>Critical value detected.</strong> Potassium level at <span class="acid-mono">6.8 mEq/L</span> exceeds safe clinical thresholds.</div>
+    </div>
+  </div>
+
+  <div class="showcase">
+    <div class="showcase-label">Clinical Success Alert</div>
+    <div class="acid-alert acid-alert-success">
+      <span class="acid-alert-icon">✓</span>
+      <div><strong>Laboratory panel complete.</strong> All 12 biomarkers verified within healthy reference margins.</div>
+    </div>
+  </div>
+
+  <div class="showcase">
+    <div class="showcase-label">System Informational Alert</div>
+    <div class="acid-alert acid-alert-info">
+      <span class="acid-alert-icon">i</span>
+      <div><strong>Sync Schedule.</strong> Automated telemetry database sync will execute in <span class="acid-mono">00:14:32</span>.</div>
+    </div>
+  </div>
+</body>
+</html>

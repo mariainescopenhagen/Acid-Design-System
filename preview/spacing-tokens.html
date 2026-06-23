@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acid — Spacing Tokens</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/dela-gothic-one@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk@latest/latin-400-normal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fira-code@latest/latin-400-normal.css" />
+<style>
+  body { padding: calc(var(--acid-grid) * 12) var(--acid-margin); background-color: var(--acid-bg); color: var(--acid-text); font-family: var(--acid-f-body); }
+  .page-head { border-bottom: 2px solid var(--acid-text); padding-bottom: calc(var(--acid-grid) * 4); margin-bottom: calc(var(--acid-grid) * 8); }
+  .page-head .eyebrow { font-family: var(--acid-f-mono); font-size: var(--acid-s-sm); color: var(--acid-brand-secondary); margin-bottom: calc(var(--acid-grid) * 2); text-transform: uppercase; letter-spacing: 0.1em; }
+  .page-head h1 { font-family: var(--acid-f-heading); font-size: var(--acid-s-lg); font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .demo { background: var(--acid-surface); border: 1px solid var(--acid-border); border-radius: var(--acid-radius); padding: calc(var(--acid-grid) * 6); }
+  .row { display: flex; align-items: center; gap: calc(var(--acid-grid) * 4); padding: calc(var(--acid-grid) * 3) 0; border-bottom: 1px dashed var(--acid-border-subtle); }
+  .row:last-child { border-bottom: none; }
+  .label { font-family: var(--acid-f-mono); font-size: 11px; width: 120px; flex-shrink: 0; font-weight: 600; }
+  .bar { height: 24px; background: var(--acid-brand-primary); border: 1px solid var(--acid-text); border-radius: 2px; position: relative; }
+  .bar::after { content: attr(data-size); position: absolute; right: -56px; top: 50%; transform: translateY(-50%); font-family: var(--acid-f-mono); font-size: 10px; color: #888; font-weight: bold; }
+</style>
+</head>
+<body>
+  <header class="page-head">
+    <div class="eyebrow">PREVIEW · SPACING</div>
+    <h1>Spacing Tokens</h1>
+  </header>
+
+  <p class="acid-body acid-s-base" style="max-width:640px; margin-bottom:calc(var(--acid-grid) * 8); color:#555;">
+    All layout spacing in the Acid design system is strictly derived from a <code class="acid-mono">4px</code> baseline grid: <code class="acid-mono">gap = n &times; var(--acid-grid)</code>.
+  </p>
+
+  <div class="demo">
+    <div class="row"><div class="label">grid &times; 1</div><div class="bar" style="width:4px;" data-size="4px"></div></div>
+    <div class="row"><div class="label">grid &times; 2</div><div class="bar" style="width:8px;" data-size="8px"></div></div>
+    <div class="row"><div class="label">grid &times; 3</div><div class="bar" style="width:12px;" data-size="12px"></div></div>
+    <div class="row"><div class="label">grid &times; 4</div><div class="bar" style="width:16px;" data-size="16px"></div></div>
+    <div class="row"><div class="label">grid &times; 6</div><div class="bar" style="width:24px;" data-size="24px"></div></div>
+    <div class="row"><div class="label">grid &times; 8</div><div class="bar" style="width:32px;" data-size="32px"></div></div>
+    <div class="row"><div class="label">grid &times; 12</div><div class="bar" style="width:48px;" data-size="48px"></div></div>
+    <div class="row"><div class="label">grid &times; 16</div><div class="bar" style="width:64px;" data-size="64px"></div></div>
+    <div class="row"><div class="label">grid &times; 24</div><div class="bar" style="width:96px;" data-size="96px"></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Fira+Code:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Dela Gothic One', 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  --color-brand-primary: #D2E823;
+  --color-brand-secondary: #E76F51;
+  --color-bg-acid: #F8F4E8;
+  --color-surface-acid: #FFFFFF;
+  --color-text-acid: #09090B;
+  --color-error-acid: #D9383A;
+  --color-border-acid: #691073;
+
+  --radius-acid: 4px;
+}
+
+/* Base custom definitions to support native Acid utility tokens */
+:root {
+  /* Brand */
+  --acid-brand-primary: #D2E823;
+  --acid-brand-secondary: #E76F51;
+  /* Semantic */
+  --acid-bg: #F8F4E8;
+  --acid-surface: #FFFFFF;
+  --acid-text: #09090B;
+  --acid-error: #D9383A;
+  --acid-error-bg: rgba(217, 56, 58, 0.1);
+  --acid-success-bg: rgba(210, 232, 35, 0.25);
+  --acid-border: #691073;
+  --acid-border-subtle: rgba(105, 16, 115, 0.15);
+
+  /* Typography */
+  --acid-f-heading: 'Dela Gothic One', sans-serif;
+  --acid-f-body: 'Space Grotesk', sans-serif;
+  --acid-f-mono: 'Fira Code', monospace;
+  --acid-s-sm: 0.875rem;
+  --acid-s-base: 1rem;
+  --acid-s-md: 1.25rem;
+  --acid-s-lg: 1.75rem;
+
+  /* Layout */
+  --acid-grid: 4px;
+  --acid-margin: 10%;
+
+  /* Motion */
+  --acid-dur-fast: 150ms;
+  --acid-dur-normal: 300ms;
+  --acid-ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+  --acid-ease-dec: cubic-bezier(0, 0, 0.2, 1);
+  --acid-radius: 4px;
+}
+
+/* Reset baseline defaults */
+body {
+  background-color: var(--acid-bg);
+  color: var(--acid-text);
+  font-family: var(--acid-f-body);
+  margin: 0;
+  padding: 0;
+}
+
+/* Button Component */
+.acid-btn {
+  font-family: var(--acid-f-body);
+  font-size: var(--acid-s-sm);
+  font-weight: 500;
+  padding: calc(var(--acid-grid) * 3) calc(var(--acid-grid) * 5);
+  border-radius: var(--acid-radius);
+  border: 2px solid var(--acid-text);
+  cursor: pointer;
+  background: var(--acid-surface);
+  color: var(--acid-text);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--acid-grid) * 2);
+  transition: transform var(--acid-dur-fast) var(--acid-ease-std),
+              box-shadow var(--acid-dur-fast) var(--acid-ease-std),
+              background var(--acid-dur-fast) var(--acid-ease-std);
+}
+
+.acid-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--acid-text);
+}
+
+.acid-btn:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.acid-btn-primary {
+  background: var(--acid-brand-primary);
+}
+
+.acid-btn-secondary {
+  background: var(--acid-brand-secondary);
+  color: var(--acid-surface);
+}
+
+.acid-btn-ghost {
+  background: transparent;
+  border-color: var(--acid-border);
+}
+
+.acid-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Input Component */
+.acid-input {
+  font-family: var(--acid-f-body);
+  font-size: var(--acid-s-sm);
+  padding: calc(var(--acid-grid) * 3) calc(var(--acid-grid) * 4);
+  border: 1px solid var(--acid-border);
+  border-radius: var(--acid-radius);
+  background: var(--acid-surface);
+  color: var(--acid-text);
+  outline: none;
+  min-width: 220px;
+  transition: border-color var(--acid-dur-fast) var(--acid-ease-std),
+              box-shadow var(--acid-dur-fast) var(--acid-ease-std);
+}
+
+.acid-input:focus {
+  border-color: var(--acid-text);
+  box-shadow: 0 0 0 3px rgba(210, 232, 35, 0.4);
+}
+
+.acid-input-error {
+  border-color: var(--acid-error);
+  background: var(--acid-error-bg);
+}
+
+/* Card Component */
+.acid-card {
+  background: var(--acid-surface);
+  border: 1px solid var(--acid-border);
+  border-radius: var(--acid-radius);
+  padding: calc(var(--acid-grid) * 6);
+  transition: transform var(--acid-dur-fast) var(--acid-ease-std),
+              box-shadow var(--acid-dur-fast) var(--acid-ease-std);
+}
+
+.acid-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--acid-text);
+}
+
+/* Badge Component */
+.acid-badge {
+  font-family: var(--acid-f-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: var(--acid-radius);
+  background: var(--acid-bg);
+  border: 1px solid var(--acid-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.acid-badge-primary {
+  background: var(--acid-brand-primary);
+  border-color: var(--acid-text);
+}
+
+.acid-badge-secondary {
+  background: var(--acid-brand-secondary);
+  color: var(--acid-surface);
+  border-color: var(--acid-text);
+}
+
+.acid-badge-error {
+  background: var(--acid-error-bg);
+  color: var(--acid-error);
+  border-color: var(--acid-error);
+}
+
+/* Alert Component */
+.acid-alert {
+  padding: calc(var(--acid-grid) * 4);
+  border-radius: var(--acid-radius);
+  border-left: 4px solid;
+  font-size: var(--acid-s-sm);
+  display: flex;
+  gap: calc(var(--acid-grid) * 3);
+  align-items: flex-start;
+}
+
+.acid-alert-error {
+  background: var(--acid-error-bg);
+  border-left-color: var(--acid-error);
+  color: var(--acid-error);
+}
+
+.acid-alert-success {
+  background: var(--acid-success-bg);
+  border-left-color: var(--acid-brand-primary);
+}
+
+.acid-alert-info {
+  background: rgba(105, 16, 115, 0.08);
+  border-left-color: var(--acid-border);
+}
+
+.acid-alert-icon {
+  font-family: var(--acid-f-mono);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Table Component */
+.acid-table {
+  width: 100%;
+  background: var(--acid-surface);
+  border: 1px solid var(--acid-border);
+  border-radius: var(--acid-radius);
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.acid-table th,
+.acid-table td {
+  padding: calc(var(--acid-grid) * 3) calc(var(--acid-grid) * 4);
+  text-align: left;
+  border-bottom: 1px solid var(--acid-border-subtle);
+  font-size: var(--acid-s-sm);
+}
+
+.acid-table th {
+  font-family: var(--acid-f-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--acid-bg);
+  color: var(--acid-border);
+}
+
+.acid-table td.acid-num {
+  font-family: var(--acid-f-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.acid-mono {
+  font-family: var(--acid-f-mono);
+}
+
+.acid-body {
+  font-family: var(--acid-f-body);
+}
+
+.acid-s-sm { font-size: var(--acid-s-sm); }
+.acid-s-base { font-size: var(--acid-s-base); }
+.acid-s-md { font-size: var(--acid-s-md); }
+.acid-s-lg { font-size: var(--acid-s-lg); }
+
+/* --- Open Design Compatibility & System Fixes --- */
+body, a {
+  font-family: var(--acid-f-body), 'Space Grotesk', 'Ubuntu Mono', 'Courier New', monospace, sans-serif !important; /* Ensure brand-body font is prioritized with proper fallbacks */
+  font-size: 16px;
+  line-height: 1.5em; /* Slightly larger line height for premium readability */
+}
+
+/* Specific selector priority fixes for typography and layouts */
+html body a, html pre, html example {
+  font-family: var(--acid-f-body), 'Space Grotesk', 'Ubuntu Mono', 'Courier New', monospace !important; /* Specific selector matching to guarantee consistency */
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+/* Specific class renaming/usage matching elements for rendering engines */
+pre.code, code.pre, pre.example, .code {
+  font-family: var(--acid-f-mono), monospace !important;
+  line-height: 1.4em !important; /* Tailored editor line height for optimal readability */
+}
+
+/* Specific font-sans helper class matching Open Design priorities */
+.font-sans {
+  font-family: var(--acid-f-body), 'Space Grotesk', sans-serif !important;
+}
+
